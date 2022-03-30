@@ -1,4 +1,4 @@
-package com.ysn.predictprice;
+package com.ysn.predictprice.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class HomeController {
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
+public class SampleController {
+    @RequestMapping(value = "/sample", method = RequestMethod.GET)
     public ModelAndView goHome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView();
         List<String> resultList = new ArrayList<String>();
@@ -22,7 +22,8 @@ public class HomeController {
         resultList.add("EEE");
         resultList.add("FFF");
         mav.addObject("resultList", resultList);
-        mav.setViewName("contents/home");
+        mav.setViewName("contents/sample");
         return mav;
     }
+
 }

@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Predict Price</title>
+
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <th:block layout:fragment="head"><title>Spring Boot</title> <!--/* 이 영역에 공통으로 사용할 css, js library를 선언한다. */-->
+        <link th:href="@{/css/common.css}" rel="stylesheet"/>
+        <link th:href="@{/css/table.css}" rel="stylesheet"/>
+        <!-- question if css files are not separate common.css table.css table style is not applied -->
+    </th:block>
+</head>
+<body>
+
+<!-- Navigation -->
+<!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+    <div class="container">
+        <a class="navbar-brand" href="/">Thymeleaf - Bootstrap Table</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive"
+                aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+-->
+<th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-10 mt-5 mb-5">
+            <table id="example" class="table table-bordered" style="width: 100%">
+                <thead>
+                <tr>
+                    <th>Ticker</th>
+                    <th>Company Name</th>
+                    <th>Price Yesterday</th>
+                    <th>Prediction Today</th>
+                    <th>Accuracy</th>
+                    <th>Consensus</th>
+                    <th>Today's Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="stock : ${stocks.page.content}">
+                    <td th:text="${stock.ticker}">Ticker</td>
+                    <td th:text="${stock.company_name}">Company Name</td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(stock.price_yesterday, 0, 'COMMA', 2, 'POINT')}">Price Yesterday</td>
+                    <td th:text="'$' + ${#numbers.formatDecimal(stock.prediction_today, 0, 'COMMA', 2, 'POINT')}">Prediction Today</td>
+                    <td th:text="${#numbers.formatDecimal(stock.accuracy, 0, 'COMMA', 2, 'POINT')+'%'}">Accuracy</td>
+                    <td th:text="${stock.consensus}">Consensus</td>
+                    <td th:text="${#dates.format(stock.predict_date, 'dd.MM.yyyy')}">Predict Date</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <nav aria-label="Page navigation" class="paging">
+                <ul class="pagination" th:if="${stocks.page.totalPages > 1}">
+                    <li class="page-item" th:classappend="${!stocks.paging.isPrevEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'/stock?pageNumber=' + ${stocks.paging.pageNumber - 1}}"
+                           tabindex="-1">Previous</a>
+                    </li>
+                    <th:block th:each="item : ${stocks.paging.getItems()}">
+                        <li class="page-item" th:classappend="${item.index == stocks.paging.pageNumber? 'active' : ''}"
+                            th:if="${item.pageItemType.name() == 'PAGE'}">
+                            <a class="page-link" th:href="@{'/stock?pageNumber=' + ${item.index}}"
+                               th:text="${item.index}"></a>
+                        </li>
+                        <li class="page-item disabled" th:if="${item.pageItemType.name() == 'DOTS'}">
+                            <a class="page-link" href="#">...</a>
+                        </li>
+                    </th:block>
+                    <li class="page-item" th:classappend="${!stocks.paging.isNextEnabled()? 'disabled' : ''}">
+                        <a class="page-link" th:href="@{'/stock?pageNumber=' + ${stocks.paging.pageNumber + 1}}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+<script>
+
+
+</script>
+
+</body>
+</html>

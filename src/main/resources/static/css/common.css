@@ -3,15 +3,16 @@ body, html {
 }
 
 .header {
-    background-color: Gray;
+    background-color: white;
     height: 20%
 }
 
 .content {
     height: 60%;
+
 }
 
 .footer {
-    background-color: yellow;
+    background-color: white;
     height: 20%
 }
