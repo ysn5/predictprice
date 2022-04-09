@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Predict Price</title>
+
+  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <link th:rel="stylesheet" th:href="@{/css/common.css} "/>
+  <link th:rel="stylesheet" th:href="@{/css/table.css} "/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
+  <script src="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.js"></script>
+  <script>
+    jQuery(function($){
+      $("#example").DataTable();
+    });
+  </script>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+  <div class="container">
+    <a class="navbar-brand" href="/predictstock">The News of Tomorrow</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Services</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
+
+  <div class="row">
+    <div class="col-lg-10 mt-5 mb-5">
+      <table id="example" class="table table-bordered" style="width: 100%">
+        <thead>
+        <tr>
+          <th style="width:10%">Ticker</th>
+          <th style="width:20%">Company Name</th>
+          <th style="width:15%">Predicted Price</th>
+          <th style="width:15%">Date for Prediction</th>
+          <th style="width:10%">Price Yesterday</th>
+          <th style="width:10%">Accuracy</th>
+          <th style="width:10%">Consensus</th>
+          <th style="width:20%">Predicted At</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="stock : ${predictstock}">
+          <td th:text="${stock.ticker}">Company Name</td>
+          <td th:text="${stock.company_name}">Company Name</td>
+          <td th:text="'$' + ${#numbers.formatDecimal(stock.prediction_today, 0, 'COMMA', 2, 'POINT')}">Prediction Price</td>
+          <td th:text="${stock.predict_date}">Date for the Precdiction</td>
+          <td th:text="'$' + ${#numbers.formatDecimal(stock.price_yesterday, 0, 'COMMA', 2, 'POINT')}">Price Yesterday</td>
+          <td th:text="${#numbers.formatDecimal(stock.accuracy, 0, 'COMMA', 2, 'POINT')+'%'}">Accuracy</td>
+          <td th:text="${stock.consensus}">Consensus</td>
+          <td th:text="${stock.predict_time}">Predicted at</td>
+        </tr>
+
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+  <th:block layout:fragment="footer" th:include="@{/fragments/footer}"></th:block>
+</div>
+
+<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+</body>
+</html>
