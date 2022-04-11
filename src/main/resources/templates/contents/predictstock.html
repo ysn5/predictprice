@@ -4,7 +4,7 @@
   <meta charset="UTF-8"/>
   <title>Predict Price</title>
 
-  <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link th:rel="stylesheet" th:href="@{/css/common.css} "/>
   <link th:rel="stylesheet" th:href="@{/css/table.css} "/>
   <link rel="stylesheet" href="https://cdn.datatables.net/t/bs-3.3.6/jqc-1.12.0,dt-1.10.11/datatables.min.css"/>
@@ -51,18 +51,18 @@
   <th:block layout:fragment="header" th:include="@{/fragments/header}"></th:block>
 
   <div class="row">
-    <div class="col-lg-10 mt-5 mb-5">
-      <table id="example" class="table table-bordered" style="width: 100%">
+    <div class="col-xxl-12 mt-5 mb-5">
+      <table id="example" class="table table-bordered w-auto text-sm-center" style="width: 100%">
         <thead>
         <tr>
-          <th style="width:10%">Ticker</th>
-          <th style="width:20%">Company Name</th>
-          <th style="width:15%">Predicted Price</th>
+          <th style="width:7%">Ticker</th>
+          <th style="width:15%">Company Name</th>
+          <th style="width:13%">Predicted Price</th>
           <th style="width:15%">Date for Prediction</th>
-          <th style="width:10%">Price Yesterday</th>
+          <th style="width:15%">Price Yesterday</th>
           <th style="width:10%">Accuracy</th>
           <th style="width:10%">Consensus</th>
-          <th style="width:20%">Predicted At</th>
+          <th style="width:15%">Predicted At</th>
         </tr>
         </thead>
         <tbody>
