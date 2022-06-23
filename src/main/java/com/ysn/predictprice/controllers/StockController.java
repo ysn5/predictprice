@@ -32,27 +32,10 @@ public class StockController {
 
     @RequestMapping(value = "/predictiondetail", method = RequestMethod.GET)
     public String predictiondetail(HttpServletRequest request, Model model) throws ParseException {
-        model.addAttribute("ticker", request.getParameter("ticker"));
-        model.addAttribute("chartData", getChartData());
+        String ticker = request.getParameter("ticker");
+        model.addAttribute("ticker", ticker);
+        model.addAttribute("queryPrediction", stockService.queryPrediction(ticker));
+        model.addAttribute("queryReal", stockService.queryReal(ticker));
         return "contents/predictiondetail";
     }
-    private List<List<Object>> getChartData() {
-        List<Object> ls1=new ArrayList<>();
-        ls1.add("Mushrooms");
-        ls1.add(2);
-        List<Object> ls2=new ArrayList<>();
-        ls2.add("Onions");
-        ls2.add(4);
-        List<Object> ls3=new ArrayList<>();
-        ls3.add("Shrimps");
-        ls3.add(3);
-        List<List<Object>> ls=new ArrayList<>();
-        ls.add(ls1);
-        ls.add(ls2);
-        ls.add(ls3);
-
-        return ls;
-    }
-
-
 }
