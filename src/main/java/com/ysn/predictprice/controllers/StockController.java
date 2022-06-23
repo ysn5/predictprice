@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 public class StockController {
@@ -36,7 +33,26 @@ public class StockController {
     @RequestMapping(value = "/predictiondetail", method = RequestMethod.GET)
     public String predictiondetail(HttpServletRequest request, Model model) throws ParseException {
         model.addAttribute("ticker", request.getParameter("ticker"));
+        model.addAttribute("chartData", getChartData());
         return "contents/predictiondetail";
     }
+    private List<List<Object>> getChartData() {
+        List<Object> ls1=new ArrayList<>();
+        ls1.add("Mushrooms");
+        ls1.add(2);
+        List<Object> ls2=new ArrayList<>();
+        ls2.add("Onions");
+        ls2.add(4);
+        List<Object> ls3=new ArrayList<>();
+        ls3.add("Shrimps");
+        ls3.add(3);
+        List<List<Object>> ls=new ArrayList<>();
+        ls.add(ls1);
+        ls.add(ls2);
+        ls.add(ls3);
+
+        return ls;
+    }
+
 
 }
