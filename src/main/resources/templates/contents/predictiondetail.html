@@ -22,12 +22,16 @@
             data.addColumn('number', 'Price');
            //data.addColumn('real', 'Price');
             data.addRows([[${queryPrediction}]]);
-            //data.addRows([[${queryReal}]]);
+            data.addRows([[${queryReal}]]);
             // Set chart options
             var options = {'title':[[${ticker}]],
                 'width':1200,
                 'height':500,
                 legend: 'none',
+                series: {
+                    1: { type: 'line' },
+                    2: { type: 'line' }
+                },
                 interpolateNulls: true,
                 colors: ['red',  'gray'],
                 hAxis: { format: 'YYYY/MM/DD' }
@@ -40,7 +44,7 @@
             // Instantiate and draw our chart, passing in some options.
             //var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
             //chart.draw(data, options);
-            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            var chart = new google.visualization.ComboChart(document.getElementById('curve_chart'));
             //var chart = new google.visualization.Timeline(document.getElementById('chart_div'));
 
             chart.draw(data, options);
