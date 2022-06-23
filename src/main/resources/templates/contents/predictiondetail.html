@@ -16,14 +16,35 @@
         // draws it.
         function drawChart() {
 
-            // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Date');
+            data.addColumn('number', 'Real');
+            data.addColumn('number', 'Prediction');
+
+            var real = [[${queryReal}]];
+            var prediction = [[${queryPrediction}]];
+            for (var i = 0; i < prediction.length; i++) {
+                var yesterdayprice = null;
+                var curdate = prediction[i][0];
+                var predictionfortheday = prediction[i][1];
+                for (var j = 0; j < real.length; j++) {
+                    if (curdate == real[j][0]) {
+                        yesterdayprice = real[j][1];
+                        break;
+                    }
+                }
+                data.addRow([curdate, yesterdayprice, predictionfortheday]);
+                //need to add prediction tomorrow, no real price yet
+                // if(i==real.length-1)
+
+            }
+           /* var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Date');
             data.addColumn('number', 'Price');
-           //data.addColumn('real', 'Price');
+
             data.addRows([[${queryPrediction}]]);
-            data.addRows([[${queryReal}]]);
-            // Set chart options
+            data.addRows([[${queryReal}]]);*/
+
             var options = {'title':[[${ticker}]],
                 'width':1200,
                 'height':500,
@@ -33,7 +54,7 @@
                     2: { type: 'line' }
                 },
                 interpolateNulls: true,
-                colors: ['red',  'gray'],
+                colors: ['gray',  'red'],
                 hAxis: { format: 'YYYY/MM/DD' }
             };
 
@@ -41,11 +62,9 @@
                 pattern: "YYYY/MM/DD"
             });
             monthYearFormatter.format(data, 0);
-            // Instantiate and draw our chart, passing in some options.
-            //var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
-            //chart.draw(data, options);
-            var chart = new google.visualization.ComboChart(document.getElementById('curve_chart'));
-            //var chart = new google.visualization.Timeline(document.getElementById('chart_div'));
+
+            var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+            //var chart = new google.visualization.Timeline(document.getElementById('curve_chart'));
 
             chart.draw(data, options);
         }
