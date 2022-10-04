@@ -72,17 +72,19 @@
 
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             //var chart = new google.visualization.Timeline(document.getElementById('curve_chart'));
-
             chart.draw(data, options);
+
         }
-        document.write(consensus);
+
     </script>
 
 
 </head>
 <body>
 <div id="curve_chart" style="width: 900px; height: 500px"></div>
-    document.write(consensus);
+<script type="text/javascript" th:inline="javascript">
+    var arr = [[${queryPrediction}]];
+    document.write("CONSENSUS: "+arr[arr.length-1][2]);
 </script>
 </body>
 </html>
