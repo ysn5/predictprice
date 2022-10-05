@@ -6,8 +6,8 @@
             <!-- mandatory -->
             <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
             <property name="javax.persistence.jdbc.user" value="predictpriceadmin"/>
-            <property name="javax.persistence.jdbc.password" value="predictpriceadmin1234"/>
-            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/predictpricetest"/>
+            <property name="javax.persistence.jdbc.password" value="Hello1234!"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/predictprice"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect"/>
         </properties>
     </persistence-unit>
