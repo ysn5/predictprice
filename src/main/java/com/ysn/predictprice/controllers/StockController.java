@@ -27,7 +27,7 @@ public class StockController {
     public String predictstock(Model model){
         List<StockPrediction> predictstock = stockService.predictStock();
         model.addAttribute("predictstock", predictstock);
-        return "contents/predictstock";
+        return "contents/predictstock.html";
     }
 
     @RequestMapping(value = "/predictiondetail", method = RequestMethod.GET)
@@ -36,6 +36,6 @@ public class StockController {
         model.addAttribute("ticker", ticker);
         model.addAttribute("queryPrediction", stockService.queryPrediction(ticker));
         model.addAttribute("queryReal", stockService.queryReal(ticker));
-        return "contents/predictiondetail";
+        return "contents/predictiondetail.html";
     }
 }
