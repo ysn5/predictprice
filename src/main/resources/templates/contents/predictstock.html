@@ -65,22 +65,22 @@
           <!--ticker, company, prediction price, date, prediction change rate, real price, date, consensus, predicted date,
 
           date- same color -->
-          <th style="width: auto" rowspan="2">Ticker</th>
-          <th style="width: auto" rowspan="2">Company</th>
-          <th style="width: auto; font-size:8px" colspan="3" >Prediction</th>
-          <th style="width: auto; font-size:8px" colspan="2">Yesterday</th>
-          <th style="width: auto" rowspan="2">Consensus</th>
-          <th style="width: auto" rowspan="2">Predicted At</th>
+          <th style="width: 50px" rowspan="2">Ticker</th>
+          <th style="width: 220px" rowspan="2">Company</th>
+          <th style="width: 280px; text-align:center" colspan="3" >Prediction</th>
+          <th style="width: 210px; text-align:center" colspan="2">Yesterday</th>
+          <th style="width: 80px" rowspan="2">Consensus</th>
+          <th style="width: 100px" rowspan="2">Predicted At</th>
         </tr>
         <tr>
           <!--ticker, company, prediction price, date, prediction change rate, real price, date, consensus, predicted date,
 
           date- same color -->
           <th style="width: auto">Price</th>
-          <th style="width: auto">Change Rate</th>
-          <th style="width: auto">Date</th>
+          <th style="width: auto">Change</th>
+          <th style="width: 100px">Date</th>
           <th style="width: auto">Price</th>
-          <th style="width: auto">Date</th>
+          <th style="width: 100px">Date</th>
         </tr>
         </thead>
         <tbody>
@@ -88,12 +88,12 @@
           <td><a th:text="${stock.ticker}"  th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
           <td th:text="${stock.company_name}">Company</td>
           <td th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="text-align:right">Prediction Price</td>
-          <td th:text="${#numbers.formatDecimal(stock.predicted_change_rate, 1, 4, 'POINT')}" style="text-align:right">Predicted Change Rate</td>
-          <td th:text="${stock.predict_date}">Date for the Precdiction</td>
+          <td th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="text-align:right">Predicted Change Rate</td>
+          <td th:text="${#dates.format(stock.predict_date,'dd-MMM-yyyy')}"  style="text-align:right">Date for the Precdiction</td>
           <td th:text="${#numbers.formatCurrency(stock.price_yesterday)}" style="text-align:right">Price Yesterday</td>
-          <td th:text="${stock.yesterday_date}">Yesterday Date</td>
+          <td th:text="${#dates.format(stock.yesterday_date,'dd-MMM-yyyy')}" style="text-align:right">Yesterday Date</td>
           <td th:text="${stock.consensus}">Consensus</td>
-          <td th:text="${stock.predict_time}">Predicted at</td>
+          <td th:text="${#dates.format(stock.predict_time, 'dd-MMM-yyyy')}" style="text-align:right">Predicted at</td>
         </tr>
 
         </tbody>
