@@ -57,7 +57,8 @@
   <th:block layout:fragment="header" th:include="@{fragments/header.html}"></th:block>
 
   <div class="row">
-    <div class="col-xxl-12 mt-5 mb-5">
+    <!--div class="col-xxl-12 mt-5 mb-5"-->
+    <div class="col-xxl-10 text-white">
       <table id="example"  class="table table-bordered w-auto text-xsmall" style="width: auto;">
         <thead>
         <tr>
@@ -86,10 +87,10 @@
         <tr th:each="stock : ${predictstock}" >
           <td><a th:text="${stock.ticker}"  th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
           <td th:text="${stock.company_name}">Company</td>
-          <td th:text="${#numbers.formatCurrency(stock.prediction_today)}">Prediction Price</td>
-          <td th:text="${#numbers.formatDecimal(stock.predicted_change_rate, 1, 4, 'POINT')}">Predicted Change Rate</td>
+          <td th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="text-align:right">Prediction Price</td>
+          <td th:text="${#numbers.formatDecimal(stock.predicted_change_rate, 1, 4, 'POINT')}" style="text-align:right">Predicted Change Rate</td>
           <td th:text="${stock.predict_date}">Date for the Precdiction</td>
-          <td th:text="${#numbers.formatCurrency(stock.price_yesterday)}">Price Yesterday</td>
+          <td th:text="${#numbers.formatCurrency(stock.price_yesterday)}" style="text-align:right">Price Yesterday</td>
           <td th:text="${stock.yesterday_date}">Yesterday Date</td>
           <td th:text="${stock.consensus}">Consensus</td>
           <td th:text="${stock.predict_time}">Predicted at</td>
