@@ -18,10 +18,16 @@ import java.util.List;
 public class StockService {
 
     @Autowired
+    public
     StockPredictionRepository repository;
 
     public List<StockPrediction> predictStock(){
         List<StockPrediction> stocks = (List<StockPrediction>) repository.findAll();
+        return stocks;
+    }
+
+    public List<StockPrediction> listFromLastOnes(){
+        List<StockPrediction> stocks = (List<StockPrediction>) repository.listFromLastOnes();
         return stocks;
     }
 
