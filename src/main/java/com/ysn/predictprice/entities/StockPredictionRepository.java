@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface StockPredictionRepository extends JpaRepository<StockPrediction, Long> {
-    @Query(value = "SELECT predict_date,s.ticker,accuracy,ci.shortname as company_name,consensus,predict_time,prediction_today,price_yesterday,predicted_change_rate,yesterday_date,status\n" +
+    @Query(value = "SELECT predict_date,s.ticker,accuracy,ci.longname as company_name,consensus,predict_time,prediction_today,price_yesterday,predicted_change_rate,yesterday_date,status\n" +
             "FROM stock_prediction s\n" +
             "INNER JOIN(\n" +
             "SELECT ticker, MAX(predict_date) AS lastdate\n" +
