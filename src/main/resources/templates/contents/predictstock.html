@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:font-size="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8"/>
   <title>Predict Price</title>
@@ -20,7 +20,8 @@
           search: "_INPUT_",
           searchPlaceholder: "Search..."
         },
-        pagingType: 'simple_numbers'
+        pagingType: 'simple_numbers',
+        info: false
       } );
     });
 
@@ -73,11 +74,11 @@
           <!--ticker, company, prediction price, date, prediction change rate, real price, date, consensus, predicted date, date- same color -->
           <th style="width: 60px">Ticker</th>
           <th style="width: 220px">Company</th>
-          <th style="width: 60px; text-align:center">Real</th>
-          <th style="width: 100px; text-align:center">Date</th>
-          <th style="width: 60px; text-align:center">Predicted</th>
+          <th style="width: 80px; text-align:center">Real Price</th>
+          <th style="width: 80px; text-align:center">Date</th>
+          <th style="width: 80px; text-align:center">Forecast</th>
           <th style="width: 60px; text-align:center">Change</th>
-          <th style="width: 100px; text-align:center">Date</th>
+          <th style="width: 80px; text-align:center">Date</th>
           <th style="width: 100px">Consensus</th>
         </tr>
         </thead>
