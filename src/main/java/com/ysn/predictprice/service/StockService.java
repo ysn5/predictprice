@@ -36,6 +36,7 @@ public class StockService {
         EntityManager em = emf.createEntityManager();
         List<?> prices = em.createQuery("SELECT s.predict_date,s.prediction_today, s.consensus FROM StockPrediction s where s.ticker=:ticker")
                 .setParameter("ticker", ticker)
+                .setHint("javax.persistence.query.timeout", 1000)
                 .getResultList();
         return prices;
     }
@@ -45,6 +46,7 @@ public class StockService {
         EntityManager em = emf.createEntityManager();
         List<?> prices = em.createQuery("SELECT s.yesterday_date,s.price_yesterday FROM StockPrediction s where s.ticker=:ticker")
                 .setParameter("ticker", ticker)
+                .setHint("javax.persistence.query.timeout", 1000)
                 .getResultList();
         return prices;
     }
