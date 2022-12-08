@@ -36,4 +36,8 @@ public class StockController {
         model.addAttribute("queryReal", stockService.queryReal(ticker));
         return "contents/predictiondetail.html";
     }
+    @RequestMapping(path = "/contact")
+    public String contac(Model model){
+        return "contents/contact.html";
+    }
 }
