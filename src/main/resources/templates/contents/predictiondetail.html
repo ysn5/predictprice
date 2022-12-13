@@ -25,9 +25,16 @@
 
             var real = [[${queryReal}]];
             var prediction = [[${queryPrediction}]];
-
-            for (var i = 0; i < prediction.length; i++) {
-                var yesterdayprice = null;
+            var showdays = 10; //  business days before
+            var startdate = new Date();//new Date(2022, 10, 1); // today
+            var numberofdate = startdate.getDate() - showdays;
+            startdate.setDate(numberofdate);
+            var strstartdate = startdate.getFullYear()+'-'+(startdate.getMonth()+1)+'-'+startdate.getDate();
+            var idx = prediction.map(d => d[0]).indexOf(strstartdate);
+            if(idx<0)
+                idx = prediction.length-showdays>0?prediction.length-showdays:0;
+            for (var i = idx; i < prediction.length; i++) {
+                    var yesterdayprice = null;
                 var curdate = prediction[i][0];
                 var predictionfortheday = prediction[i][1];
                 for (var j = 0; j < real.length; j++) {
@@ -73,9 +80,7 @@
             var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
             //var chart = new google.visualization.Timeline(document.getElementById('curve_chart'));
             chart.draw(data, options);
-
         }
-
     </script>
 
 
