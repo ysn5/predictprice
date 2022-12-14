@@ -16,6 +16,8 @@
         // Callback that creates and populates a data table,
         // instantiates the pie chart, passes in the data and
         // draws it.
+        nextstartidx =0;
+        var ticker = "";
         function drawChart() {
 
             var data = new google.visualization.DataTable();
@@ -25,23 +27,31 @@
 
             var real = [[${queryReal}]];
             var prediction = [[${queryPrediction}]];
+            ticker = [[${ticker}]];
 
             var bdparam = [[${bd}]];
             //alert('bdparam '+bdparam);
             if(bdparam == null)
                 bdparam=15;
-            //alert('bdparam '+bdparam);
+            alert('bdparam '+bdparam);
             var showdays = 15; //  business days before
 
+            //var nextstartidx =0;
             var startidx = prediction.length - bdparam;
-            if(startidx <0)
+            if(startidx < 0) {
                 startidx = 0;
-            //alert('startidx '+startidx);
+                nextstartidx = 15;
+            }else {
+                nextstartidx = startidx - showdays;
+                if (nextstartidx < 0)
+                    nextstartidx = 15;
+            }
+            alert('startidx '+startidx);
 
             var endidx = startidx+showdays;
             if(endidx>prediction.length)
                 endidx = prediction.length;
-            //alert('endidx '+endidx);
+            alert('endidx '+endidx);
             for (var i = startidx; i < endidx; i++) {
                     var yesterdayprice = null;
                 var curdate = prediction[i][0];
@@ -92,13 +102,21 @@
         }
     </script>
 
-
 </head>
 <body>
-<div id="curve_chart" style="width: 900px; height: 500px"></div>
 <script type="text/javascript" th:inline="javascript">
+    <!--
     var arr = [[${queryPrediction}]];
     document.write("CONSENSUS: "+arr[arr.length-1][2]);
+    var bdnegative = parseInt([[${bd}]])+15;
+    document.write("<a href='\predictiondetail?ticker="+[[${ticker}]]+"&bd="+bdnegative+"'>");
+    document.write("ok</a>");
+
+    //document.write("<a onclick=\"javascript:alert(\"hello\");>ok</a>");
+    //document.write("<a onClick=\"javascript:godetail(\'" + ${stock.ticker}+"','');\">previous</a>");
+    //-->
 </script>
+<div id="curve_chart" style="width: 900px; height: 500px"></div>
+
 </body>
 </html>
