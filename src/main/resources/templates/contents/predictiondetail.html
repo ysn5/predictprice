@@ -16,8 +16,6 @@
         // Callback that creates and populates a data table,
         // instantiates the pie chart, passes in the data and
         // draws it.
-        nextstartidx =0;
-        var ticker = "";
         function drawChart() {
 
             var data = new google.visualization.DataTable();
@@ -27,32 +25,17 @@
 
             var real = [[${queryReal}]];
             var prediction = [[${queryPrediction}]];
-            ticker = [[${ticker}]];
 
             var bdparam = [[${bd}]];
-            //alert('bdparam '+bdparam);
             if(bdparam == null)
-                bdparam=15;
-            alert('bdparam '+bdparam);
-            var showdays = 15; //  business days before
+                bdparam=30;
 
-            //var nextstartidx =0;
             var startidx = prediction.length - bdparam;
             if(startidx < 0) {
                 startidx = 0;
-                nextstartidx = 15;
-            }else {
-                nextstartidx = startidx - showdays;
-                if (nextstartidx < 0)
-                    nextstartidx = 15;
             }
-            alert('startidx '+startidx);
 
-            var endidx = startidx+showdays;
-            if(endidx>prediction.length)
-                endidx = prediction.length;
-            alert('endidx '+endidx);
-            for (var i = startidx; i < endidx; i++) {
+            for (var i = startidx; i < prediction.length; i++) {
                     var yesterdayprice = null;
                 var curdate = prediction[i][0];
                 var predictionfortheday = prediction[i][1];
@@ -108,9 +91,13 @@
     <!--
     var arr = [[${queryPrediction}]];
     document.write("CONSENSUS: "+arr[arr.length-1][2]);
-    var bdnegative = parseInt([[${bd}]])+15;
-    document.write("<a href='\predictiondetail?ticker="+[[${ticker}]]+"&bd="+bdnegative+"'>");
-    document.write("ok</a>");
+    document.write("<br><a href='\predictiondetail?ticker="+[[${ticker}]]+"&bd=30'>");
+    document.write("30D</a>&nbsp;&nbsp;&nbsp;");
+    document.write("<a href='\predictiondetail?ticker="+[[${ticker}]]+"&bd=90'>");
+    document.write("3M</a>&nbsp;&nbsp;&nbsp;");
+    document.write("<a href='\predictiondetail?ticker="+[[${ticker}]]+"&bd=180'>");
+    document.write("6M</a>&nbsp;&nbsp;&nbsp;");
+
 
     //document.write("<a onclick=\"javascript:alert(\"hello\");>ok</a>");
     //document.write("<a onClick=\"javascript:godetail(\'" + ${stock.ticker}+"','');\">previous</a>");

@@ -36,7 +36,7 @@ public class StockController {
         model.addAttribute("ticker", ticker);
         String bd = request.getParameter("bd");
         if(bd == null) {
-            bd = "15";
+            bd = "30";
         }
         model.addAttribute("bd",bd);
         model.addAttribute("queryPrediction", stockService.queryPrediction(ticker));
