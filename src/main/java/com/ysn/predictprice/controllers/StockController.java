@@ -30,6 +30,13 @@ public class StockController {
         return "contents/predictstock.html";
     }
 
+    @RequestMapping(path = "/")
+    public String predictstockmain(Model model){
+        List<StockPrediction> predictstock = stockService.listFromLastOnes();
+        model.addAttribute("predictstock", predictstock);
+        return "contents/predictstock.html";
+    }
+
     @RequestMapping(value = "/predictiondetail", method = RequestMethod.GET)
     public String predictiondetail(HttpServletRequest request, Model model) throws ParseException {
         String ticker = request.getParameter("ticker");
