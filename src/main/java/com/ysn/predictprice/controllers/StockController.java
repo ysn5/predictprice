@@ -51,7 +51,17 @@ public class StockController {
         return "contents/predictiondetail.html";
     }
     @RequestMapping(path = "/contact")
-    public String contac(Model model){
+    public String contact(Model model){
         return "contents/contact.html";
+    }
+
+    @RequestMapping(path = "/service")
+    public String service(Model model){
+        return "contents/service.html";
+    }
+
+    @RequestMapping(path = "/about")
+    public String about(Model model){
+        return "contents/about.html";
     }
 }
