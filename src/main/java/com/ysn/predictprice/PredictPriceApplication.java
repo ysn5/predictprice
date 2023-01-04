@@ -2,6 +2,7 @@ package com.ysn.predictprice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -12,7 +13,8 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
-public class PredictPriceApplication {
+
+public class PredictPriceApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PredictPriceApplication.class, args);
