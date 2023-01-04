@@ -2,6 +2,7 @@ package com.ysn.predictprice.service;
 
 import com.ysn.predictprice.entities.StockPrediction;
 import com.ysn.predictprice.entities.StockPredictionRepository;
+import com.ysn.predictprice.entities.TopStockPredictionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,8 +19,9 @@ import java.util.List;
 public class StockService {
 
     @Autowired
-    public
-    StockPredictionRepository repository;
+    public StockPredictionRepository repository;
+    @Autowired
+    public TopStockPredictionRepository toprepository;
 
     public List<StockPrediction> predictStock(){
         List<StockPrediction> stocks = (List<StockPrediction>) repository.findAll();
@@ -28,6 +30,11 @@ public class StockService {
 
     public List<StockPrediction> listFromLastOnes(){
         List<StockPrediction> stocks = (List<StockPrediction>) repository.listFromLastOnes();
+        return stocks;
+    }
+
+    public List<StockPrediction> topListFromLastOnes(){
+        List<StockPrediction> stocks = (List<StockPrediction>) toprepository.topListFromLastOnes();
         return stocks;
     }
 
