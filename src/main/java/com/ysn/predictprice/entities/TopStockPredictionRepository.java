@@ -13,10 +13,11 @@ public interface TopStockPredictionRepository extends JpaRepository<StockPredict
             "INNER JOIN(\n" +
             "SELECT ticker, MAX(predict_date) AS lastdate\n" +
             "FROM stock_prediction\n" +
-            "WHERE ticker='GOOGL' or ticker='AMZN' or ticker='AAPL' or ticker='MSFT' or ticker='TSLA' or ticker='NVDA' or ticker='PEP' or ticker='AVGO' or ticker='AZN' or ticker='COST' or ticker='CSCO' or ticker='ADBE' or ticker='CMCSA' or ticker='TXN' or ticker='AMGN' or ticker='NFLX' or ticker='QCOM' or ticker='SNY' or ticker='INTU' or ticker='PDD' or ticker='INTC' or ticker='GILD' or ticker='ADP' or ticker='AMAT'\n"+
             "GROUP BY ticker\n" +
             ")sm ON s.ticker = sm.ticker AND s.predict_date=sm.lastdate\n" +
             "LEFT JOIN stock_symbols ci\n" +
-            "ON ci.ticker = s.ticker", nativeQuery = true)
+            "ON ci.ticker = s.ticker\n" +
+            "WHERE s.ticker='GOOGL' or s.ticker='AMZN' or s.ticker='AAPL' or s.ticker='MSFT' or s.ticker='TSLA' or s.ticker='NVDA' or s.ticker='PEP' or s.ticker='AVGO' or s.ticker='AZN' or s.ticker='COST' or s.ticker='CSCO' or s.ticker='ADBE' or s.ticker='CMCSA' or s.ticker='TXN' or s.ticker='AMGN' or s.ticker='NFLX' or s.ticker='QCOM' or s.ticker='SNY' or s.ticker='INTU' or s.ticker='PDD' or s.ticker='INTC' or s.ticker='GILD' or s.ticker='ADP' or s.ticker='AMAT'\n"
+            , nativeQuery = true)
     List<StockPrediction> topListFromLastOnes();
 }
