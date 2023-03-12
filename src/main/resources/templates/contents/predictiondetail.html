@@ -25,7 +25,7 @@
         function drawChart() {
 
             var data = new google.visualization.DataTable();
-            data.addColumn('string', 'Date');
+            data.addColumn('date', 'Date');
             data.addColumn('number', 'Real');
             data.addColumn('number', 'Prediction');
 
@@ -42,7 +42,7 @@
             }
 
             for (var i = startidx; i < prediction.length; i++) {
-                    var yesterdayprice = null;
+                var yesterdayprice = null;
                 var curdate = prediction[i][0];
                 var predictionfortheday = prediction[i][1];
                 for (var j = 0; j < real.length; j++) {
@@ -52,14 +52,15 @@
                     }
                 }
                 consensus = prediction[i][2];
-                data.addRow([curdate, yesterdayprice, predictionfortheday]);
+                data.addRow([new Date(curdate), yesterdayprice, predictionfortheday]);
             }
-
+            alert(prediction)
+            alert(real)
             var options = {'title':[[${ticker}]],
                 //'width':1200,
                 //'height':600,
                 chartArea : { left: 60, top:60 },
-                legend: 'none',
+                //legend: 'none',
                 series: {
                     1: { type: 'line', pointShape: 'circle' },
                     2: { type: 'line', pointShape: 'star'}
@@ -68,11 +69,19 @@
 
                 interpolateNulls: true,
                 colors: ['gray',  'green'],
-                hAxis: { format: 'YYYY/MM/DD' }
+                annotations: {
+                    style: 'line'
+                },
+                hAxis: {
+                    format : 'MM/dd/yy' ,
+                    gridlines: {
+                        color: 'transparent'
+                    }
+                }
             };
 
             var monthYearFormatter = new google.visualization.DateFormat({
-                pattern: "YYYY/MM/DD"
+                pattern: "MM/dd/yy"
             });
             monthYearFormatter.format(data, 0);
 

@@ -23,10 +23,10 @@ public class StockService {
     @Autowired
     public TopStockPredictionRepository toprepository;
 
-    public List<StockPrediction> predictStock(){
-        List<StockPrediction> stocks = (List<StockPrediction>) repository.findAll();
-        return stocks;
-    }
+//    public List<StockPrediction> predictStock(){
+//        List<StockPrediction> stocks = (List<StockPrediction>) repository.findAll();
+//        return stocks;
+//    }
 
     public List<StockPrediction> listFromLastOnes(){
         List<StockPrediction> stocks = (List<StockPrediction>) repository.listFromLastOnes();
