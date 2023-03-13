@@ -54,8 +54,6 @@
                 consensus = prediction[i][2];
                 data.addRow([new Date(curdate), yesterdayprice, predictionfortheday]);
             }
-            alert(prediction)
-            alert(real)
             var options = {'title':[[${ticker}]],
                 //'width':1200,
                 //'height':600,
@@ -73,15 +71,30 @@
                     style: 'line'
                 },
                 hAxis: {
-                    format : 'MM/dd/yy' ,
+                    format : 'MMM/dd/yyyy' ,
                     gridlines: {
                         color: 'transparent'
+                    },
+                    textStyle : {
+                        fontSize: 10, // or the number you want,
+                        fontName: 'Arial',
+                        bold: false,
+                        italic: true
+                    }
+                },
+                vAxis: {
+
+                    textStyle : {
+                        fontSize: 10, // or the number you want,
+                        fontName: 'Arial',
+                        bold: false,
+                        italic: true
                     }
                 }
             };
 
             var monthYearFormatter = new google.visualization.DateFormat({
-                pattern: "MM/dd/yy"
+                pattern: "MMM/dd/yyyy"
             });
             monthYearFormatter.format(data, 0);
 
