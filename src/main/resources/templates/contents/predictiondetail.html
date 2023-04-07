@@ -40,7 +40,8 @@
             if(startidx < 0) {
                 startidx = 0;
             }
-
+            var dates ='';
+            var datess = '';
             for (var i = startidx; i < prediction.length; i++) {
                 var yesterdayprice = null;
                 var curdate = prediction[i][0];
@@ -52,7 +53,7 @@
                     }
                 }
                 consensus = prediction[i][2];
-                data.addRow([new Date(curdate), yesterdayprice, predictionfortheday]);
+                data.addRow([new Date(curdate.replace(/-/g, '\/')), yesterdayprice, predictionfortheday]);
             }
             var options = {'title':[[${ticker}]],
                 //'width':1200,
@@ -67,9 +68,9 @@
 
                 interpolateNulls: true,
                 colors: ['gray',  'green'],
-                annotations: {
-                    style: 'line'
-                },
+                //annotations: {
+                //    style: 'line'
+                //},
                 hAxis: {
                     format : 'MMM/dd/yyyy' ,
                     gridlines: {
