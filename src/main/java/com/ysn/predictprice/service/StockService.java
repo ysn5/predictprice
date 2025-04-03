@@ -41,7 +41,7 @@ public class StockService {
     public List<?> queryPrediction(String ticker) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("stock_prediction");
         EntityManager em = emf.createEntityManager();
-        List<?> prices = em.createQuery("SELECT s.predict_date,s.prediction_today, s.consensus FROM StockPrediction s where s.ticker=:ticker")
+        List<?> prices = em.createQuery("SELECT s.predictDate,s.predictionToday, s.consensus FROM StockPrediction s where s.ticker=:ticker")
                 .setParameter("ticker", ticker)
                 .setHint("javax.persistence.query.timeout", 1000)
                 .getResultList();
@@ -51,7 +51,7 @@ public class StockService {
     public List<?> queryReal(String ticker) {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("stock_prediction");
         EntityManager em = emf.createEntityManager();
-        List<?> prices = em.createQuery("SELECT s.yesterday_date,s.price_yesterday FROM StockPrediction s where s.ticker=:ticker")
+        List<?> prices = em.createQuery("SELECT s.yesterdayDate,s.priceYesterday FROM StockPrediction s where s.ticker=:ticker")
                 .setParameter("ticker", ticker)
                 .setHint("javax.persistence.query.timeout", 1000)
                 .getResultList();

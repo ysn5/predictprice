@@ -60,36 +60,36 @@
         <tbody>
         <tr th:each="stock : ${toppredictstock}" >
           <td><a th:text="${stock.ticker}"  th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
-          <td th:text="${#strings.abbreviate(stock.company_name,29)}" style="white-space: normal">Company</td>
-          <td th:text="${#numbers.formatCurrency(stock.price_yesterday)}" style="text-align:right; background-color:lightgray">Price Yesterday</td>
-          <td th:text="${#dates.format(stock.yesterday_date,'dd-MMM-yyyy')}" style="text-align:right; background-color:lightgray">Yesterday Date</td>
+          <td th:text="${#strings.abbreviate(stock.companyName,29)}" style="white-space: normal">Company</td>
+          <td th:text="${#numbers.formatCurrency(stock.priceYesterday)}" style="text-align:right; background-color:lightgray">Price Yesterday</td>
+          <td th:text="${#dates.format(stock.yesterdayDate,'dd-MMM-yyyy')}" style="text-align:right; background-color:lightgray">Yesterday Date</td>
 
-          <td th:if="${stock.predicted_change_rate}>=0.01" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate}<=-0.01" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate>-0.01 and stock.predicted_change_rate<0.01}" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}>=0.01" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}<=-0.01" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate>-0.01 and stock.predictedChangeRate<0.01}" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="background-color:lightsteelblue; text-align:right">Prediction Price</td>
 
-          <td th:if="${stock.predicted_change_rate}>=0.01" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate}<=-0.01" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate>-0.01 and stock.predicted_change_rate<0.01}" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="background-color:lightsteelblue; text-align:right">Predicted Change Rate</td>
+          <td th:if="${stock.predictedChangeRate}>=0.01" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}<=-0.01" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate>-0.01 and stock.predictedChangeRate<0.01}" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="background-color:lightsteelblue; text-align:right">Predicted Change Rate</td>
 
-          <td th:text="${#dates.format(stock.predict_date,'dd-MMM-yyyy')}"  style="text-align:right; background-color:lightsteelblue">Date for the Precdiction</td>
+          <td th:text="${#dates.format(stock.predictDate,'dd-MMM-yyyy')}"  style="text-align:right; background-color:lightsteelblue">Date for the Precdiction</td>
           <td th:text="${stock.consensus}">Consensus</td>
         </tr>
         <tr th:each="stock : ${predictstock}" >
           <td><a th:text="${stock.ticker}"  th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
-          <td th:text="${#strings.abbreviate(stock.company_name,29)}" style="white-space: normal">Company</td>
-          <td th:text="${#numbers.formatCurrency(stock.price_yesterday)}" style="text-align:right; background-color:lightgray">Price Yesterday</td>
-          <td th:text="${#dates.format(stock.yesterday_date,'dd-MMM-yyyy')}" style="text-align:right; background-color:lightgray">Yesterday Date</td>
+          <td th:text="${#strings.abbreviate(stock.companyName,29)}" style="white-space: normal">Company</td>
+          <td th:text="${#numbers.formatCurrency(stock.priceYesterday)}" style="text-align:right; background-color:lightgray">Price Yesterday</td>
+          <td th:text="${#dates.format(stock.yesterdayDate,'dd-MMM-yyyy')}" style="text-align:right; background-color:lightgray">Yesterday Date</td>
 
-          <td th:if="${stock.predicted_change_rate}>=0.01" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate}<=-0.01" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate>-0.01 and stock.predicted_change_rate<0.01}" th:text="${#numbers.formatCurrency(stock.prediction_today)}" style="background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}>=0.01" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}<=-0.01" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate>-0.01 and stock.predictedChangeRate<0.01}" th:text="${#numbers.formatCurrency(stock.predictionToday)}" style="background-color:lightsteelblue; text-align:right">Prediction Price</td>
 
-          <td th:if="${stock.predicted_change_rate}>=0.01" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate}<=-0.01" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
-          <td th:if="${stock.predicted_change_rate>-0.01 and stock.predicted_change_rate<0.01}" th:text="${#numbers.formatPercent(stock.predicted_change_rate, 1, 2)}" style="background-color:lightsteelblue; text-align:right">Predicted Change Rate</td>
+          <td th:if="${stock.predictedChangeRate}>=0.01" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="color:dodgerblue; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate}<=-0.01" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="color:red; background-color:lightsteelblue; text-align:right">Prediction Price</td>
+          <td th:if="${stock.predictedChangeRate>-0.01 and stock.predictedChangeRate<0.01}" th:text="${#numbers.formatPercent(stock.predictedChangeRate, 1, 2)}" style="background-color:lightsteelblue; text-align:right">Predicted Change Rate</td>
 
-          <td th:text="${#dates.format(stock.predict_date,'dd-MMM-yyyy')}"  style="text-align:right; background-color:lightsteelblue">Date for the Precdiction</td>
+          <td th:text="${#dates.format(stock.predictDate,'dd-MMM-yyyy')}"  style="text-align:right; background-color:lightsteelblue">Date for the Precdiction</td>
           <td th:text="${stock.consensus}">Consensus</td>
         </tr>
         </tbody>

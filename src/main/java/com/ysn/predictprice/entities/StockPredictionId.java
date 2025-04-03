@@ -20,13 +20,13 @@ public class StockPredictionId implements Serializable {
 
     @Id
     @Column(name="predict_date")
-    public Date predict_date;
+    public Date predictDate;
 
     public StockPredictionId(){ }
 
-    public StockPredictionId(String ticker,Date predict_date){
+    public StockPredictionId(String ticker,Date predictDate){
         this.ticker = ticker;
-        this.predict_date = predict_date;
+        this.predictDate = predictDate;
     }
 
     @Override
@@ -34,11 +34,11 @@ public class StockPredictionId implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         StockPredictionId that = (StockPredictionId) o;
-        return Objects.equals(ticker, that.ticker) && Objects.equals(predict_date, that.predict_date);
+        return Objects.equals(ticker, that.ticker) && Objects.equals(predictDate, that.predictDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ticker, predict_date);
+        return Objects.hash(ticker, predictDate);
     }
 }

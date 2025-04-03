@@ -5,68 +5,91 @@ import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "stock_prediction")
 @IdClass(StockPredictionId.class)
 public class StockPrediction {
 
-    //for compoisted key embeded way in StockPredictionId
-    //@EmbeddedId
-    //public StockPredictionId stockPredictionId;
+    @Id
+    private String ticker;
+    public String getTicker() {   // Ensure getter exists
+        return ticker;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
 
     @Id
-    public String ticker;
-    @Id
-    public Date predict_date;
+    @Column(name = "predict_date") 
+    private Date predictDate;
+    public Date getPredictDate() {
+    	return predictDate;
+    }
 
-    @Column(length = 255, nullable = true)
-    public String company_name;
+    @Column(name = "company_name", length = 255, nullable = true)
+    private String companyName; // Make sure this matches
 
-    @Column(nullable = true)
-    public Float price_yesterday;
+    public String getCompanyName() { // Ensure this getter exists
+        return companyName;
+    }
 
-    @Column(nullable = true)
-    public Date yesterday_date;
+    @Column(name="price_yesterday", nullable = true)
+    private Float priceYesterday;
+    public Float getPriceYesterday() {
+    	return priceYesterday;
+    }
 
-    @Column(nullable = true)
-    public Float prediction_today;
+    @Column(name="yesterday_date", nullable = true)
+    private Date yesterdayDate;
+    public Date getYesterdayDate() {
+    	return yesterdayDate;
+    }
 
-    @Column(nullable = true)
-    public Float accuracy;
+    @Column(name="prediction_today", nullable = true)
+    private Float predictionToday;
+    public Float getPredictionToday() {
+    	return predictionToday;
+    }
 
-    @Column(length = 30, nullable = true)
-    public String consensus;
+    @Column(name="accuracy", nullable = true)
+    private Float accuracy;
+    public Float getAccuracy() {
+    	return accuracy;
+    }
 
-    @Column(nullable = true)
-    public Timestamp predict_time;
-    //Java Timestamp -> Mysql Datetime
-    //Java Date -> Mysql Date
+    @Column(name="consensus", length = 30, nullable = true)
+    private String consensus;
+    public String getConsensus() {
+    	return consensus;
+    }
 
-    @Column(nullable = true)
-    public Float predicted_change_rate;
+    @Column(name="predict_time", nullable = true)
+    private Timestamp predictTime;
+    public Timestamp getPredictTime() {
+    	return predictTime;
+    }
 
-    @Column(nullable = true)
-    public Integer status;
+    @Column(name="predicted_change_rate", nullable = true)
+    private Float predictedChangeRate;
+    public Float getPredictedChangeRate() {
+    	return predictedChangeRate;
+    }
+
+    @Column(name="status", nullable = true)
+    private Integer status;
+    public Integer getStatus() {
+    	return status;
+    }
 
     @Transient
     private String detailLink;
-
-    @Builder
-    public StockPrediction(String ticker, Date predict_date, String company_name, Float price_yesterday, Date yesterday_date, Float prediction_today, Float accuracy, String consensus, Timestamp predict_time, Float predicted_change_rate, Integer status) {
-        this.ticker = ticker;
-        this.predict_date = predict_date;
-        this.company_name = company_name;
-        this.price_yesterday = price_yesterday;
-        this.yesterday_date = yesterday_date;
-        this.prediction_today = prediction_today;
-        this.accuracy = accuracy;
-        this.consensus = consensus;
-        this.predict_time = predict_time;
-        this.predicted_change_rate = predicted_change_rate;
-        this.status = status;
-    }
-
-    public StockPrediction(){
-
+    public String getDetailLink() {
+    	return detailLink;
     }
 }

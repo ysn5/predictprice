@@ -28,11 +28,12 @@
             data.addColumn('date', 'Date');
             data.addColumn('number', 'Real');
             data.addColumn('number', 'Prediction');
-
-            var real = [[${queryReal}]];
-            var prediction = [[${queryPrediction}]];
-
-            var bdparam = [[${bd}]];
+            
+            var real = /*[[${queryReal}]]*/ [];
+            var prediction = /*[[${queryPrediction}]]*/ [];
+            var bdparam = /*[[${bd}]]*/ 30;
+            
+            
             if(bdparam == null)
                 bdparam=30;
 
@@ -55,7 +56,7 @@
                 consensus = prediction[i][2];
                 data.addRow([new Date(curdate.replace(/-/g, '\/')), yesterdayprice, predictionfortheday]);
             }
-            var options = {'title':[[${ticker}]],
+            var options = {'title':/*[[${ticker}]]*/[],
                 //'width':1200,
                 //'height':600,
                 chartArea : { left: 60, top:60 },
