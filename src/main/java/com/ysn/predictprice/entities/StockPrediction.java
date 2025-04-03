@@ -1,6 +1,7 @@
 package com.ysn.predictprice.entities;
 
 import lombok.*;
+
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -8,65 +9,34 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "stock_prediction")
 @IdClass(StockPredictionId.class)
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class StockPrediction {
 
-    //for compoisted key embeded way in StockPredictionId
-    //@EmbeddedId
-    //public StockPredictionId stockPredictionId;
+    @Id
+    private String ticker;
 
     @Id
-    public String ticker;
-    @Id
-    public Date predict_date;
+    private Date predict_date;
 
-    @Column(length = 255, nullable = true)
-    public String company_name;
+    @Column(length = 255)
+    private String company_name;
 
-    @Column(nullable = true)
-    public Float price_yesterday;
+    private Float price_yesterday;
+    private Date yesterday_date;
+    private Float prediction_today;
+    private Float accuracy;
 
-    @Column(nullable = true)
-    public Date yesterday_date;
+    @Column(length = 30)
+    private String consensus;
 
-    @Column(nullable = true)
-    public Float prediction_today;
-
-    @Column(nullable = true)
-    public Float accuracy;
-
-    @Column(length = 30, nullable = true)
-    public String consensus;
-
-    @Column(nullable = true)
-    public Timestamp predict_time;
-    //Java Timestamp -> Mysql Datetime
-    //Java Date -> Mysql Date
-
-    @Column(nullable = true)
-    public Float predicted_change_rate;
-
-    @Column(nullable = true)
-    public Integer status;
+    private Timestamp predict_time;
+    private Float predicted_change_rate;
+    private Integer status;
 
     @Transient
     private String detailLink;
-
-    @Builder
-    public StockPrediction(String ticker, Date predict_date, String company_name, Float price_yesterday, Date yesterday_date, Float prediction_today, Float accuracy, String consensus, Timestamp predict_time, Float predicted_change_rate, Integer status) {
-        this.ticker = ticker;
-        this.predict_date = predict_date;
-        this.company_name = company_name;
-        this.price_yesterday = price_yesterday;
-        this.yesterday_date = yesterday_date;
-        this.prediction_today = prediction_today;
-        this.accuracy = accuracy;
-        this.consensus = consensus;
-        this.predict_time = predict_time;
-        this.predicted_change_rate = predicted_change_rate;
-        this.status = status;
-    }
-
-    public StockPrediction(){
-
-    }
 }
