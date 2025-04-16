@@ -86,6 +86,12 @@ public class StockPrediction {
     public Integer getStatus() {
     	return status;
     }
+    
+    @Column(name="priority", nullable = true)
+    private Integer priority;
+    public Integer getPriority() {
+    	return priority;
+    }
 
     @Transient
     private String detailLink;
