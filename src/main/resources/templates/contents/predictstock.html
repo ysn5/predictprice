@@ -95,19 +95,19 @@
 								th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
 							<td th:text="${#strings.abbreviate(stock.companyName,35)}"
 								style="width: 40px; white-space: nowrap">Company</td>
-							<td th:text="${stock.priceYesterday != null and stock.priceYesterday >= 0.01} ? ${#numbers.formatCurrency(stock.priceYesterday)} : '$'+${#numbers.formatDecimal(stock.priceYesterday,1,4)}"
+							<td th:text="${stock.priceYesterday != null and stock.priceYesterday >= 0.0099} ? ${#numbers.formatCurrency(stock.priceYesterday)} : '$'+${#numbers.formatDecimal(stock.priceYesterday,1,4)}"
 								style="text-align: right; background-color: lightgray">Price
 								Yesterday</td>
 							<td th:text="${#dates.format(stock.yesterdayDate,'dd-MMM-yyyy')}"
 								style="text-align: right; background-color: lightgray">Yesterday
 								Date</td>
 							<td
-								th:text="${stock.predictionToday != null and stock.predictionToday >= 0.01} ? ${#numbers.formatCurrency(stock.predictionToday)} : '$'+${#numbers.formatDecimal(stock.predictionToday,1,4)}"
-								th:style="${stock.predictedChangeRate != null ? 'color:' + (stock.predictedChangeRate >= 0.01 ? 'dodgerblue' : (stock.predictedChangeRate <= -0.01 ? 'red' : 'black')) + '; background-color:lightsteelblue; text-align:right;' : 'background-color:lightsteelblue; text-align:right;' }">
+								th:text="${stock.predictionToday != null and stock.predictionToday > 0.0099} ? '$'+${#numbers.formatDecimal(stock.predictionToday,1,2)} : '$'+${#numbers.formatDecimal(stock.predictionToday,1,4)}"
+								th:style="${stock.predictedChangeRate != null ? 'color:' + (stock.predictedChangeRate > 0.0099 ? 'dodgerblue' : (stock.predictedChangeRate < -0.0099 ? 'red' : 'black')) + '; background-color:lightsteelblue; text-align:right;' : 'background-color:lightsteelblue; text-align:right;' }">
 								Prediction Price</td>
 							<td
-								th:text="${stock.predictedChangeRate != null and (stock.predictedChangeRate >= 0.01 or stock.predictedChangeRate <= -0.01)} ? ${#numbers.formatPercent(stock.predictedChangeRate, 1, 3)} : ${#numbers.formatDecimal(stock.predictedChangeRate*100, 1, 3) + '%'}"
-								th:style="'color:' + (stock.predictedChangeRate != null ? (${stock.predictedChangeRate.doubleValue()} >= 0.01 ? 'dodgerblue' : (${stock.predictedChangeRate.doubleValue()} <= -0.01 ? 'red' : 'black')) : 'black') + '; background-color:lightsteelblue; text-align:right;'">
+								th:text="${stock.predictedChangeRate != null and (stock.predictedChangeRate > 0.0099 or stock.predictedChangeRate < -0.0099)} ? ${#numbers.formatPercent(stock.predictedChangeRate, 1, 3)} : ${#numbers.formatDecimal(stock.predictedChangeRate*100, 1, 3) + '%'}"
+								th:style="'color:' + (stock.predictedChangeRate != null ? (${stock.predictedChangeRate.doubleValue()} > 0.0099 ? 'dodgerblue' : (${stock.predictedChangeRate.doubleValue()} < -0.0099 ? 'red' : 'black')) : 'black') + '; background-color:lightsteelblue; text-align:right;'">
 								Predicted Change Rate</td>
 							<td th:text="${#dates.format(stock.predictDate,'dd-MMM-yyyy')}"	style="text-align: right; background-color: lightsteelblue">Date for the Prediction</td>
 							<td th:text="${stock.consensus}">Consensus</td>
@@ -117,19 +117,19 @@
 								th:href="@{/predictiondetail?ticker={ticker}(ticker=${stock.ticker})}"></a></td>
 							<td th:text="${#strings.abbreviate(stock.companyName,35)}"
 								style="width: 40px; white-space: nowrap">Company</td>
-							<td th:text="${stock.priceYesterday != null and stock.priceYesterday >= 0.01} ? ${#numbers.formatCurrency(stock.priceYesterday)} : '$'+${#numbers.formatDecimal(stock.priceYesterday,1,4)}"
+							<td th:text="${stock.priceYesterday != null and stock.priceYesterday > 0.0099} ? ${#numbers.formatCurrency(stock.priceYesterday)} : '$'+${#numbers.formatDecimal(stock.priceYesterday,1,4)}"
 								style="text-align: right; background-color: lightgray">Price
 								Yesterday</td>
 							<td th:text="${#dates.format(stock.yesterdayDate,'dd-MMM-yyyy')}"
 								style="text-align: right; background-color: lightgray">Yesterday
 								Date</td>
 							<td
-								th:text="${stock.predictionToday != null and stock.predictionToday >= 0.01} ? ${#numbers.formatCurrency(stock.predictionToday)} : '$'+${#numbers.formatDecimal(stock.predictionToday,1,4)}"
-								th:style="${stock.predictedChangeRate != null ? 'color:' + (stock.predictedChangeRate >= 0.01 ? 'dodgerblue' : (stock.predictedChangeRate <= -0.01 ? 'red' : 'black')) + '; background-color:lightsteelblue; text-align:right;' : 'background-color:lightsteelblue; text-align:right;' }">
+								th:text="${stock.predictionToday != null and stock.predictionToday > 0.0099} ? '$'+${#numbers.formatDecimal(stock.predictionToday,1,2)} : '$'+${#numbers.formatDecimal(stock.predictionToday,1,4)}"
+								th:style="${stock.predictedChangeRate != null ? 'color:' + (stock.predictedChangeRate > 0.0099 ? 'dodgerblue' : (stock.predictedChangeRate < -0.0099 ? 'red' : 'black')) + '; background-color:lightsteelblue; text-align:right;' : 'background-color:lightsteelblue; text-align:right;' }">
 								Prediction Price</td>
 							<td
-								th:text="${stock.predictedChangeRate != null and (stock.predictedChangeRate >= 0.01 or stock.predictedChangeRate <= -0.01)} ? ${#numbers.formatPercent(stock.predictedChangeRate, 1, 3)} : ${#numbers.formatDecimal(stock.predictedChangeRate*100, 1, 3) + '%'}"
-								th:style="'color:' + (stock.predictedChangeRate != null ? (${stock.predictedChangeRate.doubleValue()} >= 0.01 ? 'dodgerblue' : (${stock.predictedChangeRate.doubleValue()} <= -0.01 ? 'red' : 'black')) : 'black') + '; background-color:lightsteelblue; text-align:right;'">
+								th:text="${stock.predictedChangeRate != null and (stock.predictedChangeRate > 0.0099 or stock.predictedChangeRate < -0.0099)} ? ${#numbers.formatPercent(stock.predictedChangeRate, 1, 3)} : ${#numbers.formatDecimal(stock.predictedChangeRate*100, 1, 3) + '%'}"
+								th:style="'color:' + (stock.predictedChangeRate != null ? (${stock.predictedChangeRate.doubleValue()} > 0.0099 ? 'dodgerblue' : (${stock.predictedChangeRate.doubleValue()} < -0.0099 ? 'red' : 'black')) : 'black') + '; background-color:lightsteelblue; text-align:right;'">
 								Predicted Change Rate</td>
 							<td th:text="${#dates.format(stock.predictDate,'dd-MMM-yyyy')}"	style="text-align: right; background-color: lightsteelblue">Date for the Prediction</td>
 							<td th:text="${stock.consensus}">Consensus</td>
