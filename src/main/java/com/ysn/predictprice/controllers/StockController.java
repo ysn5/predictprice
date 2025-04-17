@@ -27,8 +27,6 @@ public class StockController {
     public String predictstock(Model model){
         List<StockPrediction> predictstock = stockService.listFromLastOnes();
         model.addAttribute("predictstock", predictstock);
-        //List<StockPrediction> toppredictstock = stockService.topListFromLastOnes();
-        //model.addAttribute("toppredictstock", toppredictstock);
         return "contents/predictstock.html";
     }
 
@@ -36,8 +34,6 @@ public class StockController {
     public String predictstockmain(Model model){
         List<StockPrediction> predictstock = stockService.listFromLastOnes();
         model.addAttribute("predictstock", predictstock);
-        //List<StockPrediction> toppredictstock = stockService.topListFromLastOnes();
-        //model.addAttribute("toppredictstock", toppredictstock);
         return "contents/predictstock.html";
     }
 
