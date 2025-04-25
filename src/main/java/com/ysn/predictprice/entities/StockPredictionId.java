@@ -13,14 +13,12 @@ import java.util.Objects;
 @Getter
 @EqualsAndHashCode
 public class StockPredictionId implements Serializable {
-
-    @Id
+	@Id
     @Column(name="ticker",length=30)
     public String ticker;
-
-    @Id
+	@Id
     @Column(name="predict_date")
-    public Date predictDate;
+	public Date predictDate;
 
     public StockPredictionId(){ }
 
