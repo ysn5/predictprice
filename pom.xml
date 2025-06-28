@@ -15,7 +15,7 @@
 	<name>predictprice</name>
 	<description>predict price</description>
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<bootstrap.version>4.0.0-2</bootstrap.version>
 		<webjars-locator.version>0.30</webjars-locator.version>
 		<lombok.version>1.18.2</lombok.version>
@@ -77,15 +77,14 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<version>${project.parent.version}</version>
 			</plugin>
-			<plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.10.1</version>  <!-- Ensure compatibility with Java 17+ -->
-            <configuration>
-                <source>1.8</source>  <!-- Adjust according to your JDK version -->
-                <target>1.8</target>
-            </configuration>
-        </plugin>
+        	<plugin>
+			  <groupId>org.apache.maven.plugins</groupId>
+			  <artifactId>maven-compiler-plugin</artifactId>
+			  <version>3.10.1</version>
+			  <configuration>
+			    <encoding>UTF-8</encoding>
+			  </configuration>
+			</plugin>
 		</plugins>
 	</build>
 
