@@ -10,9 +10,9 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
 @Table(name = "stock_prediction")
 @IdClass(StockPredictionId.class)
+@Entity
 public class StockPrediction {
 
     @Id
